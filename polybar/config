@@ -3,7 +3,7 @@ width = 100%
 height = 27
 radius = 0
 fixed-center = false
-
+enable-ipc = true
 background = #131822
 foreground = #aab0bc
 
@@ -23,9 +23,9 @@ font-0 = "Source Code Pro Semibold:size=10;1"
 font-1 = "Font Awesome 5 Free:style=Solid:size=10;1"
 font-2 = "Font Awesome 5 Brands:size=10;1"
 
-modules-left = wlan eth battery
-modules-center = i3
-modules-right = i3-volume date powermenu
+modules-left = i3 spotify previous playpause next
+modules-center =
+modules-right = wlan eth battery i3-volume date powermenu
 
 tray-position =
 ;tray-padding =
@@ -97,6 +97,45 @@ format-connected-prefix-foreground = #131822
 label-connected = %local_ip%
 
 format-disconnected =
+
+[module/previous]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q previous"
+
+
+[module/next]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q next"
+
+
+[module/playpause]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+click-left = "spotifyctl -q playpause"
+
+
+[module/spotify]
+type = custom/ipc
+; Default
+hook-0 = echo ""
+; Playing/paused show song name and artist
+hook-1 = spotifyctl -q status --format ' %artist% - %title%'
 
 [module/battery]
 type = internal/battery
