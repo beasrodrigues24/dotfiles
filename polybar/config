@@ -43,7 +43,7 @@ wrapping-scroll = false
 
 label-mode-padding = 2
 label-mode-foreground = #aab0bc
-label-mode-background = #aaffffff
+label-mode-background = #aa000000
 
 label-focused = %index%
 label-focused-background = #aa9a19e0
